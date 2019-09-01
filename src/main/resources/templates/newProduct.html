@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New product</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/0fb9fd672c.js"></script>
+    <link rel="stylesheet" type="text/css" href="Estilos/styleindex.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <form action="/insert-item">
+                <div class="form-group">
+                    <label for="exampleInputUsername">Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter your username">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Url of picture</label>
+                    <input type="url" name="urlpic" class="form-control" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Description</label>
+                    <input type="text" class="form-control" name="description" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Price</label>
+                    <input type="number" class="form-control" name="price" placeholder="Password">
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Add product</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

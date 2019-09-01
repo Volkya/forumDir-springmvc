@@ -1,0 +1,56 @@
+body{
+	background: #fafafa;
+	margin: 0 auto;
+}
+
+img{
+	width: 200px;
+	vertical-align: center;
+}
+
+.contact{
+	background: skyblue;
+	margin: 0 auto;
+	line-height: 50px;
+	text-align: center;
+	color: #fafafa;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+.news{
+
+}
+
+.betni{
+
+}
+
+
+.contenedor{
+	width: 1024px;
+	margin: 0 auto;
+	background-color: #ddd4ab;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.left{
+	display: block;
+	float: left;
+}
+
+.right{
+	display: block;
+	float: right;
+}
+
+
+//footer
+
+
+#place{
+	width: 40px; 
+	height: 40px;
+	background-image: url(../img/locall.png);
+}

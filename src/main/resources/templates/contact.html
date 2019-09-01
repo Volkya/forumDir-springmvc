@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Deepside tester</title>
+		<link rel="stylesheet" type="text/css" href="Estilos/styleindex.css">
+		<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+
+<div id="cabecera">
+	<div class="wrapper">
+		<h1>DEEPSIDE <b>+</b> </h1>
+<ul class="navegador">
+ 				<li><a href="index.html">Inicio</a></li>
+				<li><a href="productos.html">Productos</a></li>
+				<li><a href="contact.html">Contacto</a></li>
+				<li><a href="locations.html">Locaciones</a></li>
+				<li><a href="tienda.html">Tienda</a></li>
+				<li><a href="work.html">Trabaja con nosotros</a></li>
+			</ul>
+
+	</div>
+</div>
+
+
+<div class="contenedor">
+
+
+<div class="block"><h1>Consulta con nosotros mediante el chat o creando un ticket</h1>
+
+
+<form action="mailto:matiasdylanc@gmail.com" method="POST" enctype="text/plain">
+	<input type="text" name="nombre" value="Nombre"><br><br>
+	<input type="mail" name="email" value="E-mail"><br><br>
+	<textarea name="descripcion">Escribe aca los comentarios</textarea><br><br>
+	<select name="usuario" size="1" multiple="">
+		
+		<option value="1">Estandar</option>
+		<option value="2">Cliente</option>
+		<option selected value="3">Cliente VIP</option>
+	</select>
+<br><br>
+	<input type="radio" name="estandar" value="1">Estandar
+	<br>
+	<input type="radio" name="cliente" value="2">Cliente
+	<br>
+	<input type="radio" name="vip" value="3" checked>Cliente VIP
+
+<br><br>
+
+	<input type="checkbox" name="estandar">Estandar
+	<br>
+	<input type="checkbox" name="cliente">Cliente
+	<br>
+	<input type="checkbox" name="vip" checked>Cliente VIP
+<br><br>
+	<input type="submit" value="Enviar informacion">
+	&nbsp
+	<input type="reset" value="Resetear informacion">
+	<br>
+
+</form>
+
+<br>
+
+<div class="linedata">
+<div id="place"><b>Av. Santa Fé</b></div>
+<div style="left: 50px;"><img style="width: 40px; height: 40px;" src="img\phone.png"><b>011 4827-0452</b>
+</div>
+
+<br><br>
+<form action="mailto: nombredelcorreo@correo.com " method="post" enctype="text/plain" name="mihidden">
+
+<input type="hidden" name="opcion" value="si">
+
+</form>
+
+<form action="mailto:nombredelcorreo@correo.com" method="post" enctype="text/plain" name="image">
+
+<input type="image" name="boton" src="https://html.hazunaweb.com/html/imagenes/boton.jpg" align="middle">
+
+</form>
+
+</div>
+</div>
+
+</body>
+</html>
