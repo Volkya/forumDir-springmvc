@@ -195,4 +195,38 @@ public class ProductsController {
 
 
 
+
+    @GetMapping("/process-search")
+    public String processSearch(Model template, @RequestParam String searchedWord) throws SQLException {
+
+        Connection connection;
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","root","1234");
+
+        PreparedStatement consulta =
+                connection.prepareStatement("SELECT * FROM products WHERE name LIKE ?;");
+        consulta.setString(1, "%" + searchedWord +  "%");
+
+        ResultSet resultado = consulta.executeQuery();
+
+        ArrayList<Product> listProducts = new ArrayList<Product>();
+
+        while ( resultado.next() ) {
+            int id = resultado.getInt("id");
+            String name = resultado.getString("name");
+            String description = resultado.getString("description");
+            String urlpic = resultado.getString("urlpic");
+            Integer price = resultado.getInt("price");
+            String category = resultado.getString("category");
+
+
+            Product x = new Product(id, name, description, urlpic, price, category);
+            listProducts.add(x);
+        }
+
+        template.addAttribute("listProducts", listProducts);
+
+        return "index";
+    }
+
+
 }
