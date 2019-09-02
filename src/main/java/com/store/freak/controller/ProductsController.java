@@ -1,5 +1,4 @@
 package com.store.freak.controller;
-
 import com.store.freak.model.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,16 +13,17 @@ import java.util.ArrayList;
 public class ProductsController {
 
     @GetMapping("/insert-item")
-    public String insertItem(@RequestParam String name, @RequestParam String urlpic, @RequestParam String description, @RequestParam int price) throws SQLException {
+    public String insertItem(@RequestParam String name, @RequestParam String urlpic, @RequestParam String description, @RequestParam int price, @RequestParam String category) throws SQLException {
         Connection connection;
         connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "root", "1234");
 
         PreparedStatement consulta =
-                connection.prepareStatement("INSERT INTO products(name, description, urlpic, price) VALUES(?, ?, ?, ?);");
+                connection.prepareStatement("INSERT INTO products(name, description, urlpic, price, category) VALUES(?, ?, ?, ?, ?);");
         consulta.setString(1, name);
         consulta.setString(2, description);
         consulta.setString(3, urlpic);
         consulta.setInt(4, price);
+        consulta.setString(5,category);
 
         consulta.executeUpdate();
 
@@ -51,17 +51,47 @@ public class ProductsController {
             String description = resultado.getString("description");
             String urlpic = resultado.getString("urlpic");
             int price = resultado.getInt("price");
+            String category = resultado.getString("category");
 
-            Product x = new Product(id, name, description, urlpic, price);
+            Product x = new Product(id, name, description, urlpic, price, category);
             listProducts.add(x);
         }
-
         template.addAttribute("listProducts", listProducts);
-
         return "index";
-
     }
 
+
+
+
+    @GetMapping("/detail/{id}")
+    public String detail(Model template, @PathVariable int id) throws SQLException {
+
+        Connection connection;
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","root","1234");
+
+        PreparedStatement consulta =
+                connection.prepareStatement("SELECT * FROM products WHERE id = ?;");
+
+        consulta.setInt(1, id);
+
+        ResultSet resultado = consulta.executeQuery();
+
+        if ( resultado.next() ) {
+            String name = resultado.getString("name");
+            String urlpic = resultado.getString("urlpic");
+            String description = resultado.getString("description");
+            Integer price = resultado.getInt("price");
+            String category = resultado.getString("category");
+
+            template.addAttribute("name", name);
+            template.addAttribute("urlpic", urlpic);
+            template.addAttribute("description", description);
+            template.addAttribute("price", price);
+            template.addAttribute("category", category);
+        }
+
+        return "detailproduct";
+    }
 
 
     @GetMapping("/delete/{id}")
@@ -79,5 +109,38 @@ public class ProductsController {
 
         return "redirect:/";
     }
+
+
+
+    // Categories routes
+    @GetMapping("/dress")
+    public String dress(Model template) throws SQLException{
+        Connection connection;
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "root", "1234");
+
+    PreparedStatement consulta = connection.prepareStatement("SELECT * FROM products WHERE category = 'dress';");
+
+        ResultSet resultado = consulta.executeQuery();
+
+        ArrayList<Product> dressProducts = new ArrayList<Product>();
+
+        while (resultado.next()) {
+            int id = resultado.getInt("id");
+            String name = resultado.getString("name");
+            String description = resultado.getString("description");
+            String urlpic = resultado.getString("urlpic");
+            int price = resultado.getInt("price");
+            String category = resultado.getString("category");
+
+            Product x = new Product(id, name, description, urlpic, price, category);
+            dressProducts.add(x);
+        }
+        template.addAttribute("dressProducts", dressProducts);
+        return "dress";
+
+    }
+
+
+
 
 }

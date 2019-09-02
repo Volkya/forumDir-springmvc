@@ -7,13 +7,15 @@ public class Product {
     private String description;
     private String urlpic;
     private Integer price;
+    private String category;
 
-    public Product(int i, String n, String d, String u, int p) {
+    public Product(int i, String n, String d, String u, int p, String c) {
     this.name = n;
     this.description = d;
     this.urlpic = u;
     this.price = p;
     this.id = i;
+    this.category = c;
     }
 
     public int getId() {
@@ -54,6 +56,14 @@ public class Product {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
 

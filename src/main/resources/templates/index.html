@@ -46,34 +46,73 @@
 	</div>
 </nav>
 
-<div class="container mt-5">
+<div class="container-fluid mt-3">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-2">
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Indumentaria</a>
-                <a href="#" class="list-group-item list-group-item-action">Accesorios</a>
-                <a href="#" class="list-group-item list-group-item-action">Figuras</a>
-                <a href="#" class="list-group-item list-group-item-action">Peluches</a>
-                <a href="#" class="list-group-item list-group-item-action">Anime</a>
-                <a href="#" class="list-group-item list-group-item-action">Videojuegos</a>
-                <a href="#" class="list-group-item list-group-item-action">Cosplay</a>
+                <a href="/dress" class="list-group-item list-group-item-action">Indumentaria</a>
+                <a href="/accesories" class="list-group-item list-group-item-action">Accesorios</a>
+                <a href="/figures" class="list-group-item list-group-item-action">Figuras</a>
+                <a href="/teddies" class="list-group-item list-group-item-action">Peluches</a>
+                <a href="/anime" class="list-group-item list-group-item-action">Anime</a>
+                <a href="/videogames" class="list-group-item list-group-item-action">Videojuegos</a>
+                <a href="/cosplay" class="list-group-item list-group-item-action">Cosplay</a>
             </div>
 		</div>
 
-		<div class="col-md-8">
+		<div class="col-md-10">
 			<div class="card border-primary mb-3" style="max-width: 20rem;" th:each="product:${listProducts}">
-				<div class="card-header">Header</div>
+				<div class="card-header">
+					<a th:href="'/detail/' + ${product.id}" th:text="${product.name}">to</a>
+				</div>
 			<div class="card-body">
-				<h4 class="card-title">Primary card title</h4>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				<h4 class="card-title"><a th:href="'/delete/' + ${product.id}">X</a></h4>
+				<p class="card-text">
 
-				<label>nombre: </label><a th:href="'/detail/' + ${product.id}" th:text="${product.name}">to</a><br></br>
-				<label>contrasenia: </label><label th:text="${product.urlpic}">1234</label><br></br>
-				<label>activo: </label><label th:text="${product.description}">true</label><br></br>
-				<label>activo: </label><label th:text="${product.price}">true</label><br></br>
-				<a th:href="'/delete/' + ${product.id}">X</a>
+				<label th:text="${product.urlpic}">1234</label>
+
+				<label th:text="${product.description}">true</label>
+
+			</div>
+			<div class="card-footer">
+				<label>Price:</label><label th:text="${product.price}">true</label>
 			</div>
 			</div>
+		</div>
+		</div>
+	<div class="row text-center">
+		<div class="col-md-12">
+
+
+		<div>
+			<ul class="pagination">
+				<li class="page-item disabled">
+					<a class="page-link" href="#">&laquo;</a>
+				</li>
+				<li class="page-item active">
+					<a class="page-link" href="#">1</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="#">2</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="#">3</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="#">4</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="#">5</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="#">&raquo;</a>
+				</li>
+			</ul>
+		</div>
+
+
+
+
 		</div>
 	</div>
 </div>
