@@ -141,6 +141,58 @@ public class ProductsController {
     }
 
 
+    @GetMapping("/edit/{id}")
+    public String editar(Model template, @PathVariable int id) throws SQLException {
+
+        Connection connection;
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","root","1234");
+
+        PreparedStatement consulta =
+                connection.prepareStatement("SELECT * FROM products WHERE id = ?;");
+
+        consulta.setInt(1, id);
+
+        ResultSet resultado = consulta.executeQuery();
+
+        if ( resultado.next() ) {
+            String name = resultado.getString("name");
+            String description = resultado.getString("description");
+            String urlpic = resultado.getString("urlpic");
+            String price = resultado.getString("price");
+            String category = resultado.getString("category");
+
+            template.addAttribute("name", name);
+            template.addAttribute("description", description);
+            template.addAttribute("urlpic", urlpic);
+            template.addAttribute("price", price);
+            template.addAttribute("category", category);
+        }
+
+        return "editProduct";
+    }
+
+
+
+    @GetMapping("/update/{id}")
+    public String updateProduct(@PathVariable int id, @RequestParam String name, @RequestParam String description, @RequestParam String urlpic, @RequestParam int price, @RequestParam String category) throws SQLException {
+        Connection connection;
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","root","1234");
+
+        PreparedStatement consulta =
+                connection.prepareStatement("UPDATE products SET name = ?, description = ?, urlpic = ?, price = ?, category = ? WHERE id = ?;");
+        consulta.setString(1, name);
+        consulta.setString(2, description);
+        consulta.setString(3, urlpic);
+        consulta.setInt(4, price);
+        consulta.setString(5, category);
+        consulta.setInt(6, id);
+
+        consulta.executeUpdate();
+
+        connection.close();
+        return "redirect:/detail/" + id;
+    }
+
 
 
 }

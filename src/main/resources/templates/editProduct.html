@@ -48,27 +48,17 @@
 
 <div class="container mt-3">
     <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <label th:text="${name}">name</label>
-                </div>
-                <div class="card-body">
-                    <label th:text="${description}">description</label>
-                    <label th:text="${category}">category</label>
-                </div>
-                <div class="card-footer">
-                    <label th:text="${price}">price</label>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <img style="height: 200px; width: 100%; display: block;" src="">
-                    <label th:text="${urlpic}">urlpic</label>
-                </div>
-            </div>
+        <div class="col-md-12">
+            <form th:action="'/update/' + ${id}">
+                <input name="name" type="text" th:value="${name}"></input><br></br>
+                <input name="description" type="text" th:value="${description}"></input><br></br>
+                <input type="text" name="urlpic" th:value="${urlpic}"></input><br></br>
+                <input type="text" name="price" th:value="${price}"></input><br></br>
+                <input type="text" name="category" th:value="${category}"></input><br></br>
+                <input type="submit"></input>
+            </form>
         </div>
     </div>
 </div>
+
+
