@@ -10,16 +10,21 @@ This project content MVC framework and request to database without ORM
 - MVC design
 - PostgreSQL as database
 
-# Enviroment variables
+# Connect - enviroment variables
 
-- {DB_URL}
-- {DB_USERNAME}
-- {DB_PASSWORD}
+- DB_URL = `jdbc:postgresql://localhost:5432/freakStore`
+- DB_USERNAME =  `your username`
+- DB_PASSWORD = `your password`
 
-# Database SQL
+Change the port if required
+
+# Structure
+
+- Please, run the queries of "querys" folder.
 
 # Future updates
 
 - Static pages
 - Better structure of products
 - Dockerfile
+- Jquery implementation
