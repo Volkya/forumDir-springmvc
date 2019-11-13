@@ -15,7 +15,7 @@ public class ProductsController {
     @GetMapping("/insert-item")
     public String insertItem(@RequestParam String name, @RequestParam String urlpic, @RequestParam String description, @RequestParam int price, @RequestParam String category) throws SQLException {
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "root", "1234");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "postgres", "1234");
 
         PreparedStatement consulta =
                 connection.prepareStatement("INSERT INTO products(name, description, urlpic, price, category) VALUES(?, ?, ?, ?, ?);");
@@ -36,7 +36,7 @@ public class ProductsController {
     public String list(Model template) throws SQLException {
 
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "root", "1234");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "postgres", "1234");
 
         PreparedStatement consulta =
                 connection.prepareStatement("SELECT * FROM products;");
@@ -67,7 +67,7 @@ public class ProductsController {
     public String detail(Model template, @PathVariable int id) throws SQLException {
 
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","root","1234");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
 
         PreparedStatement consulta =
                 connection.prepareStatement("SELECT * FROM products WHERE id = ?;");
@@ -98,7 +98,7 @@ public class ProductsController {
     public String delete(@PathVariable int id) throws SQLException {
 
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","root","1234");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
 
         PreparedStatement consulta = connection.prepareStatement("DELETE FROM products WHERE id = ?;");
         consulta.setInt(1, id);
@@ -116,7 +116,7 @@ public class ProductsController {
     @GetMapping("/dress")
     public String dress(Model template) throws SQLException{
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "root", "1234");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "postgres", "1234");
 
     PreparedStatement consulta = connection.prepareStatement("SELECT * FROM products WHERE category = 'dress';");
 
@@ -145,7 +145,7 @@ public class ProductsController {
     public String editar(Model template, @PathVariable int id) throws SQLException {
 
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","root","1234");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
 
         PreparedStatement consulta =
                 connection.prepareStatement("SELECT * FROM products WHERE id = ?;");
@@ -176,7 +176,7 @@ public class ProductsController {
     @GetMapping("/update/{id}")
     public String updateProduct(@PathVariable int id, @RequestParam String name, @RequestParam String description, @RequestParam String urlpic, @RequestParam int price, @RequestParam String category) throws SQLException {
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","root","1234");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
 
         PreparedStatement consulta =
                 connection.prepareStatement("UPDATE products SET name = ?, description = ?, urlpic = ?, price = ?, category = ? WHERE id = ?;");
@@ -200,7 +200,7 @@ public class ProductsController {
     public String processSearch(Model template, @RequestParam String searchedWord) throws SQLException {
 
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","root","1234");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
 
         PreparedStatement consulta =
                 connection.prepareStatement("SELECT * FROM products WHERE name LIKE ?;");

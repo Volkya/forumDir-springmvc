@@ -16,7 +16,7 @@ public class UsersController {
     @GetMapping("/insert-user")
     public String insertUser(@RequestParam String username, @RequestParam String email, @RequestParam String password) throws SQLException {
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","root","1234");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
 
         PreparedStatement consulta =
                 connection.prepareStatement("INSERT INTO users(username, email, password) VALUES(?, ?, ?);");
