@@ -2,7 +2,7 @@
 
 -- DROP DATABASE "freakStore";
 
-CREATE DATABASE "freakStore"
+CREATE DATABASE "dirForum"
   WITH
   OWNER = postgres
   ENCODING = 'UTF8'

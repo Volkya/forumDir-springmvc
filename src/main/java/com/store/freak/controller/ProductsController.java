@@ -1,5 +1,7 @@
 package com.store.freak.controller;
 import com.store.freak.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +14,15 @@ import java.util.ArrayList;
 @Controller
 public class ProductsController {
 
+    @Autowired
+    private Environment env;
+
     @GetMapping("/insert-item")
     public String insertItem(@RequestParam String name, @RequestParam String urlpic, @RequestParam String description, @RequestParam int price, @RequestParam String category) throws SQLException {
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "postgres", "1234");
+        connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
-        PreparedStatement consulta =
-                connection.prepareStatement("INSERT INTO products(name, description, urlpic, price, category) VALUES(?, ?, ?, ?, ?);");
+        PreparedStatement consulta = connection.prepareStatement("INSERT INTO products(name, description, urlpic, price, category) VALUES(?, ?, ?, ?, ?);");
         consulta.setString(1, name);
         consulta.setString(2, description);
         consulta.setString(3, urlpic);
@@ -36,7 +40,7 @@ public class ProductsController {
     public String list(Model template) throws SQLException {
 
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "postgres", "1234");
+        connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
         PreparedStatement consulta =
                 connection.prepareStatement("SELECT * FROM products;");
@@ -67,7 +71,7 @@ public class ProductsController {
     public String detail(Model template, @PathVariable int id) throws SQLException {
 
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
+        connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"),env.getProperty("spring.datasource.username"),env.getProperty("spring.datasource.password"));
 
         PreparedStatement consulta =
                 connection.prepareStatement("SELECT * FROM products WHERE id = ?;");
@@ -98,7 +102,7 @@ public class ProductsController {
     public String delete(@PathVariable int id) throws SQLException {
 
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
+        connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"),env.getProperty("spring.datasource.username"),env.getProperty("spring.datasource.password"));
 
         PreparedStatement consulta = connection.prepareStatement("DELETE FROM products WHERE id = ?;");
         consulta.setInt(1, id);
@@ -116,7 +120,7 @@ public class ProductsController {
     @GetMapping("/dress")
     public String dress(Model template) throws SQLException{
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore", "postgres", "1234");
+        connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
     PreparedStatement consulta = connection.prepareStatement("SELECT * FROM products WHERE category = 'dress';");
 
@@ -145,7 +149,7 @@ public class ProductsController {
     public String editar(Model template, @PathVariable int id) throws SQLException {
 
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
+        connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"),env.getProperty("spring.datasource.username"),env.getProperty("spring.datasource.password"));
 
         PreparedStatement consulta =
                 connection.prepareStatement("SELECT * FROM products WHERE id = ?;");
@@ -176,7 +180,7 @@ public class ProductsController {
     @GetMapping("/update/{id}")
     public String updateProduct(@PathVariable int id, @RequestParam String name, @RequestParam String description, @RequestParam String urlpic, @RequestParam int price, @RequestParam String category) throws SQLException {
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
+        connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"),env.getProperty("spring.datasource.username"),env.getProperty("spring.datasource.password"));
 
         PreparedStatement consulta =
                 connection.prepareStatement("UPDATE products SET name = ?, description = ?, urlpic = ?, price = ?, category = ? WHERE id = ?;");
@@ -200,7 +204,7 @@ public class ProductsController {
     public String processSearch(Model template, @RequestParam String searchedWord) throws SQLException {
 
         Connection connection;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/freakStore","postgres","1234");
+        connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"),env.getProperty("spring.datasource.username"),env.getProperty("spring.datasource.password"));
 
         PreparedStatement consulta =
                 connection.prepareStatement("SELECT * FROM products WHERE name LIKE ?;");

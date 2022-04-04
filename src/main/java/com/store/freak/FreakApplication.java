@@ -1,4 +1,4 @@
-package com.store.freak.controller;
+package com.store.freak;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
